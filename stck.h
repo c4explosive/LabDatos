@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #define clrscr() system("clear")
 #define getch() system("read")
-#define TAM 10
+#define TAM 100
 //#ifndef _STCK_H
 #define _STCK_H
 //int valor;
