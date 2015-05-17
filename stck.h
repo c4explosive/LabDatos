@@ -171,4 +171,12 @@ void mostrarmul(struct stack *pil,struct stack * pil2,struct stack * pil3)
 	k--;
     } while(i>=1 || j>=1 || k>=1 );
 }
-
+//Limpiar Pila
+void lim(struct stack * pil)
+{
+    do
+    {
+	if(pil->top!=0)
+    	    elim(pil,pil->pila[pil->top]);
+    }while(pil->top != 0);
+}
