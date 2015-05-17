@@ -105,6 +105,29 @@ void vaciar(struct stack *pil, struct stack *pil2)
     }
 }
 
+//Copiar en otra pila
+void copiar(struct stack *pil, struct stack *pil2)
+{
+    int i,j,topb;
+    topb=pil->top;
+    if ( vac(pil) && lle(pil2) )
+	printf("La primera pila esta vacía y la segunda está llena");
+    else if (vac(pil))
+	printf("La primera pila esta vacía\n");
+    else if (lle(pil2))
+	printf("La Segunda pila esta llena\n");
+    else
+    //else if (vac(pil2))
+    {
+	for (i=pil->top;i>=1;i--)
+	{
+	    ins(pil2,pil->pila[pil->top]);
+	    pil->top--;
+	}
+	pil->top=topb;
+    }
+}
+
 //Mostrar la pila
 void mostrar(struct stack *pil)
 {

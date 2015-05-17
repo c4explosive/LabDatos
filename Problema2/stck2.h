@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #define clrscr() system("clear")
 #define getch() system("read")
-#define TAM 100
+#define TAM 24
 //#ifndef _STCK_H
 #define _STCK_H
 //int valor;
 struct stack
 {
-	char pila[TAM];
+	int pila[TAM];
 	int top;
 };
 
 //Insercción (Push)
-void ins(struct stack * pil,char val)
+void ins(struct stack * pil,int val)
 {
      if (pil->top == TAM)
 	printf("Desbordamineto\n");
@@ -27,7 +27,7 @@ void ins(struct stack * pil,char val)
 }
 
 //Eliminación (Pop)
-char elim(struct stack * pil, char val)
+int elim(struct stack * pil, int val)
 {
     int i, pres=0;
     for (i=pil->top;i>0;i--)
@@ -105,6 +105,29 @@ void vaciar(struct stack *pil, struct stack *pil2)
     }
 }
 
+//Copiar en otra pila
+void copiar(struct stack *pil, struct stack *pil2)
+{
+    int i,j,topb;
+    topb=pil->top;
+    if ( vac(pil) && lle(pil2) )
+	printf("La primera pila esta vacía y la segunda está llena");
+    else if (vac(pil))
+	printf("La primera pila esta vacía\n");
+    else if (lle(pil2))
+	printf("La Segunda pila esta llena\n");
+    else
+    //else if (vac(pil2))
+    {
+	for (i=pil->top;i>=1;i--)
+	{
+	    ins(pil2,pil->pila[pil->top]);
+	    pil->top--;
+	}
+	pil->top=topb;
+    }
+}
+
 //Mostrar la pila
 void mostrar(struct stack *pil)
 {
@@ -115,7 +138,7 @@ void mostrar(struct stack *pil)
     {
 	for(i= pil->top;i>=1;i--)
 	//if ( i == 1)
-	    printf("%c\n",pil->pila[i]);
+	    printf("%d\n",pil->pila[i]);
 	/*else
 	    printf("%c\n",pil->pila[i]);*/
     }
@@ -132,15 +155,15 @@ void mostrarmul(struct stack *pil,struct stack * pil2,struct stack * pil3)
     {
 	//printf(" i=%d, j=%d, k=%d\n",i,j,k);
 	if (i>=1)
-	    printf("%c\t",pil->pila[i]);
+	    printf("%d\t",pil->pila[i]);
 	else
 	    printf("\t");
 	if (j>=1)
-	    printf(" %c\t",pil2->pila[j]);
+	    printf(" %d\t",pil2->pila[j]);
 	else
 	    printf("\t");
 	if (k>=1)
-	    printf(" %c\n",pil3->pila[k]);
+	    printf(" %d\n",pil3->pila[k]);
 	else
 	    printf("\t\n");
 	i--;
