@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #define clrscr() system("clear")
 #define getch() system("read")
-#define TAM 12
+#define TAM 100
 //#ifndef _STCK_H
-#define _STCK2_H
+#define _STCK_H
 //int valor;
 struct stack
 {
-	int pila[TAM];
+	char pila[TAM];
 	int top;
 };
 
 //Insercción (Push)
-void ins(struct stack * pil,int val)
+void ins(struct stack * pil,char val)
 {
      if (pil->top == TAM)
 	printf("Desbordamineto\n");
@@ -27,7 +27,7 @@ void ins(struct stack * pil,int val)
 }
 
 //Eliminación (Pop)
-char elim(struct stack * pil, int val)
+char elim(struct stack * pil, char val)
 {
     int i, pres=0;
     for (i=pil->top;i>0;i--)
@@ -46,6 +46,7 @@ char elim(struct stack * pil, int val)
     {
 	val=pil->pila[pil->top];
 	pil->top--;
+	return val;
     }
     else if (pil->pila[pil->top] != val && pres)
     {
@@ -56,14 +57,13 @@ char elim(struct stack * pil, int val)
 	    else
 	    {
 		pil->top--;
-		break;
 		return val;
+		break;
 	    }
 	}
     }
     else if (pres == 0)
 	printf("El elemento no existe\n");
-    return val;
 }
 
 //Pila Vacía (Empty)
@@ -84,6 +84,27 @@ int lle(struct stack *pil)
 	return 0;
 }
 
+//Vaciar en otra pila
+void vaciar(struct stack *pil, struct stack *pil2)
+{
+    int i,j;
+    if ( vac(pil) && lle(pil2) )
+	printf("La primera pila esta vacía y la segunda está llena");
+    else if (vac(pil))
+	printf("La primera pila esta vacía\n");
+    else if (lle(pil2))
+	printf("La Segunda pila esta llena\n");
+    else
+    //else if (vac(pil2))
+    {
+	for (i=pil->top;i>=1;i--)
+	{
+	    ins(pil2,elim(pil,pil->pila[pil->top]));
+	    
+	}
+    }
+}
+
 //Mostrar la pila
 void mostrar(struct stack *pil)
 {
@@ -93,8 +114,38 @@ void mostrar(struct stack *pil)
     else
     {
 	for(i= pil->top;i>=1;i--)
-	    printf("%d\n",pil->pila[i]);
+	//if ( i == 1)
+	    printf("%c\n",pil->pila[i]);
+	/*else
+	    printf("%c\n",pil->pila[i]);*/
     }
 }
 
+
+
+//Mostrar varias pilas (3)
+void mostrarmul(struct stack *pil,struct stack * pil2,struct stack * pil3)
+{
+    int i=pil->top, j=pil2->top, k=pil3->top;
+    printf("PILA 1\t PILA 2\t PILA 3\n");
+    do
+    {
+	//printf(" i=%d, j=%d, k=%d\n",i,j,k);
+	if (i>=1)
+	    printf("%c\t",pil->pila[i]);
+	else
+	    printf("\t");
+	if (j>=1)
+	    printf(" %c\t",pil2->pila[j]);
+	else
+	    printf("\t");
+	if (k>=1)
+	    printf(" %c\n",pil3->pila[k]);
+	else
+	    printf("\t\n");
+	i--;
+	j--;
+	k--;
+    } while(i>=1 || j>=1 || k>=1 );
+}
 
