@@ -1,3 +1,8 @@
+/*Lab de Pilas
+Integrantes: Angel Espinosa
+		    Heidys Miranda
+Grupo: 1IL121
+*/
 #include<string.h>
 #include <stdio.h>
 #include <stdlib.h>

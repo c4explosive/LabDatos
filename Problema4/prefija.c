@@ -1,3 +1,8 @@
+/*Lab de Pilas
+Integrantes: Angel Espinosa
+		    Heidys Miranda
+Grupo: 1IL121
+*/
 #include<string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -126,7 +131,7 @@ void copytexp(struct stack * pil, char *exp)
 	   d=elim(pil,pil->pila[pil->top]);
 	   mat[0]=d;
 	   strcat(exp,mat);
-	   strcat(exp,"");
+	   strcat(exp," ");
 	}
 	else
 	   break;
